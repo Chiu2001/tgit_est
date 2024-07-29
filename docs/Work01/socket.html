@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外套頁面</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc; /* 米色背景 */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff8dc; /* 米白色背景 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            background-color: #fff8dc; /* 米白色背景 */
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); 
+            max-width: 100%;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1.25em;
+            color: #d2691e; /* 巧克力色 */
+        }
+        .price {
+            font-size: 1.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .form-label {
+            color: #8b4513; /* 棕色 */
+        }
+        .form-select {
+            background-color: #fffaf0; /* 米白色背景 */
+            border-color: #deb887; /* 淺米色 */
+        }
+        .btn-primary {
+            background-color: #d2691e; /* 巧克力色 */
+            border-color: #d2691e; /* 巧克力色 */
+        }
+        .btn-primary:hover {
+            background-color: #8b4513; /* 深棕色 */
+            border-color: #8b4513; /* 深棕色 */
+        }
+        .count_total {
+            text-align: center;
+            color: #8b4513; /* 棕色 */
+            font-weight: bold;
+        }
+        .button {
+            background-color: #d2691e; /* 巧克力色 */
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body onload="loadData()">
+    <div class="container">
+        <h1 class="text-center my-4" style="color: #d2691e;">Sockets</h1>
+        <form method="GET" action="shop.html" onsubmit="saveData()">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/458554/item/goods_00_458554.jpg?width=494" alt="商品1" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">長襪</h5>
+                            <p class="price">NT$ 250</p>
+                            <label for="quantity1" class="form-label">數量</label>
+                            <select id="quantity1" name="quantity1" class="form-select" onchange="finalUpdate()">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://www.uniqlo.com/tw/hmall/test/u0000000018229/main/first/561/1.jpg" alt="商品2" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">中筒襪</h5>
+                            <p class="price">NT$ 150</p>
+                            <label for="quantity2" class="form-label">數量</label>
+                            <select id="quantity2" name="quantity2" class="form-select" onchange="finalUpdate()">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://www.uniqlo.com/tw/hmall/test/u0000000018226/main/first/561/1.jpg" alt="商品3" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">短襪</h5>
+                            <p class="price">NT$ 100</p>
+                            <label for="quantity3" class="form-label">數量</label>
+                            <select id="quantity3" name="quantity3" class="form-select" onchange="finalUpdate()">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="count_total my-4">
+                <p>小計: NT$ <span id="subtotal">0</span></p>
+            </div>
+            <div class="count_total my-4">
+                <p>總金額: NT$ <span id="total_subtotal">0</span></p>
+            </div>
+            <div class="text-center my-4">
+                <button type="submit" class="btn btn-primary button">Confirm</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function getPrices() {
+            return {
+                quantity1: { price: 250, value: parseInt(document.getElementById("quantity1").value) },
+                quantity2: { price: 150, value: parseInt(document.getElementById("quantity2").value) },
+                quantity3: { price: 100, value: parseInt(document.getElementById("quantity3").value) }
+            };
+        }
+
+        function calculateSubtotal(prices) {
+            return prices.quantity1.value * prices.quantity1.price + 
+                   prices.quantity2.value * prices.quantity2.price + 
+                   prices.quantity3.value * prices.quantity3.price;
+        }
+
+        function updateSubtotal() {
+            const prices = getPrices();
+            const subtotal = calculateSubtotal(prices);
+            document.getElementById('subtotal').textContent = subtotal;
+        }
+
+        function totalUpdateSubtotal() {
+            const prices = getPrices();
+            const subtotal = calculateSubtotal(prices);
+            const jacketData = JSON.parse(localStorage.getItem('Jacket')) || { 價錢: 0 };
+            const paintData = JSON.parse(localStorage.getItem('Paint')) || { 價錢: 0 };
+            const T_shortData = JSON.parse(localStorage.getItem('T-short')) || { 價錢: 0 };
+            const total = jacketData.價錢 + paintData.價錢 + T_shortData.價錢 + subtotal;
+            document.getElementById('total_subtotal').textContent = total;
+        }
+
+        function finalUpdate(){
+            updateSubtotal();
+            totalUpdateSubtotal();
+        }
+
+        function loadData() {
+            const data = JSON.parse(localStorage.getItem('Socket')) || {};
+            document.getElementById('quantity1').value = data.商品1 ? data.商品1.數量 : 0;
+            document.getElementById('quantity2').value = data.商品2 ? data.商品2.數量 : 0;
+            document.getElementById('quantity3').value = data.商品3 ? data.商品3.數量 : 0;
+            updateSubtotal();
+            totalUpdateSubtotal();
+        }
+
+        function saveData() {
+            const prices = getPrices();
+            const subtotal = calculateSubtotal(prices);
+            const data = {
+                商品1:{
+                    名稱:"長襪",
+                    照片:'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/458554/item/goods_00_458554.jpg?width=494',
+                    數量: prices.quantity1.value,
+                    價錢: prices.quantity1.price,
+                },
+                商品2:{
+                    名稱:"中筒襪",
+                    照片:'https://www.uniqlo.com/tw/hmall/test/u0000000018229/main/first/561/1.jpg',
+                    數量: prices.quantity2.value,
+                    價錢: prices.quantity2.price,
+                },
+                商品3:{
+                    名稱:"短襪",
+                    照片:'https://www.uniqlo.com/tw/hmall/test/u0000000018226/main/first/561/1.jpg',
+                    數量: prices.quantity3.value,
+                    價錢: prices.quantity3.price,
+                },
+                價錢: subtotal
+            };
+            localStorage.setItem('Socket', JSON.stringify(data));
+            alert('訂單已儲存');
+        }
+    </script>
+</body>
+</html>
